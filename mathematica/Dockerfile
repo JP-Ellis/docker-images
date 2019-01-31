@@ -3,6 +3,7 @@ MAINTAINER Joshua Ellis <josh@jpellis.me>
 
 USER build
 WORKDIR /build
+
 RUN git clone https://aur.archlinux.org/mathematica.git
 WORKDIR /build/mathematica
 RUN sed -i 's/chmod +x/# chmod +x/' PKGBUILD
@@ -13,10 +14,4 @@ RUN makepkg --noconfirm -si
 
 # Cleanup
 USER root
-WORKDIR /
-RUN rm -rf /build/*
-RUN paccache -r -k0
-RUN yay -Scc --noconfirm && yay -Yc --noconfirm
-RUN rm -rf /tmp/*
-RUN rm -rf /usr/share/man/*
-RUN rm -rf /var/tmp/*
+RUN cleanup-build
