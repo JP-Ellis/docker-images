@@ -12,14 +12,20 @@ docker-build() {
     build=$1
     shift
 
-    docker build $@ $build -t jp-ellis/$build
+    docker build $@ $build -t jp-ellis/${build}:build
+    docker save jp-ellis/$build | \
+        sudo docker-squash -verbose -t jp-ellis/${build}:latest | \
+        docker load
 }
 
 # Build local/yay first as it is the dependency to all the other images
 docker-build yay $@
 
 for build in mathematica root texlive; do
-    docker-build $build $@ &
+    docker-build $build $@
+    docker save jp-ellis/${build}:build | \
+        sudo docker-squash -verbose -t jp-ellis/${build}:latest | \
+        docker load
 done
 
 wait
