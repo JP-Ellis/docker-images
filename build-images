@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 docker-build() {
     if [ $# -eq 0 ] ; then
         echo "docker-build must have at least one argument." >&2
