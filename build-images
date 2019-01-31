@@ -1,0 +1,23 @@
+#!/bin/bash
+
+docker-build() {
+    if [ $# -eq 0 ] ; then
+        echo "docker-build must have at least one argument." >&2
+        exit 1
+    fi
+
+    local build
+    build=$1
+    shift
+
+    docker build $@ $build -t local/$build
+}
+
+# Build local/yay first as it is the dependency to all the other images
+docker-build yay $@
+
+for build in mathematica root texlive; do
+    docker-build $build $@ &
+done
+
+wait
