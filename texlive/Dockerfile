@@ -14,6 +14,7 @@ RUN rsync -avz --delete rsync://mirror.aarnet.edu.au/pub/CTAN/systems/texlive/tl
 
 # Install TeXLive with install-tl
 RUN curl -L http://mirror.ctan.org/systems/texlive/tlnet/install-tl-unx.tar.gz | tar -xz --strip-components=1
+USER root
 RUN ./install-tl -repository local-mirror -profile /dev/null
 
 # Update the PATH environment, and fix repository
