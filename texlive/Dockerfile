@@ -22,10 +22,4 @@ RUN tlmgr option repository ctan
 
 # Cleanup
 USER root
-WORKDIR /
-RUN paccache -r -k0
-RUN yay -Scc --noconfirm && yay -Yc --noconfirm
-RUN rm -rf /build/*
-RUN rm -rf /tmp/*
-RUN rm -rf /usr/share/man/*
-RUN rm -rf /var/tmp/*
+RUN cleanup-build
