@@ -1,0 +1,8 @@
+#!/bin/sh
+
+paccache -r -k0
+yay --noconfirm -Yc && yay --noconfirm -Sc
+rm -rf /build/*
+rm -rf /tmp/*
+rm -rf /usr/share/man/*
+rm -rf /var/tmp/*

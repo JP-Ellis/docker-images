@@ -32,10 +32,7 @@ RUN sed -i 's/xz -c -z -/xz -c -T0 -z -/' /etc/makepkg.conf
 ENV AURDEST /build
 
 # Cleanup
-WORKDIR /
-RUN paccache -r -k0
-RUN yay --noconfirm -Yc && yay --noconfirm -Sc
-RUN rm -rf /build/*
-RUN rm -rf /tmp/*
-RUN rm -rf /usr/share/man/*
-RUN rm -rf /var/tmp/*
+WORKDIR /usr/bin/
+COPY cleanup-build .
+RUN chmod +x /usr/bin/cleanup-build
+RUN cleanup-build
