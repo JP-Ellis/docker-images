@@ -1,0 +1,9 @@
+FROM local/yay
+MAINTAINER Joshua Ellis <josh@jpellis.me>
+
+USER build
+RUN yay -Sy --noconfirm $mypackage
+
+# Cleanup
+USER root
+RUN cleanup-build
