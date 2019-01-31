@@ -1,4 +1,4 @@
-FROM local/yay
+FROM jp-ellis/yay
 MAINTAINER Joshua Ellis <josh@jpellis.me>
 
 # Install dependencies
