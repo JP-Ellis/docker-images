@@ -18,7 +18,7 @@ USER root
 RUN ./install-tl -repository local-mirror -profile /dev/null
 
 # Update the PATH environment, and fix repository
-ENV PATH="/usr/local/texlive/2017/bin/x86_64-linux:${PATH}"
+ENV PATH="/usr/local/texlive/2018/bin/x86_64-linux:${PATH}"
 RUN tlmgr option repository ctan
 
 # Cleanup
