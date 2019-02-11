@@ -1,4 +1,4 @@
-FROM base/devel
+FROM archlinux/base
 MAINTAINER Joshua Ellis <josh@jpellis.me>
 
 # Create a user 'build' for builds, and allow sudo to work without passwords
@@ -11,7 +11,7 @@ WORKDIR /home/build
 RUN chown -R build /home/build
 
 # Install git
-RUN pacman -Sy --noconfirm pacman-contrib
+RUN pacman -Sy --noconfirm base-devel pacman-contrib
 RUN pacman -Sy --noconfirm --asdeps git go
 
 USER build
