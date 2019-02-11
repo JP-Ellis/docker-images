@@ -1,6 +1,12 @@
 FROM archlinux/base
 MAINTAINER Joshua Ellis <josh@jpellis.me>
 
+# Update Arch Linux and install base-devel
+RUN pacman -Syu --noconfirm
+RUN pacman -Sy --noconfirm base-devel
+
+# Install git
+
 # Create a user 'build' for builds, and allow sudo to work without passwords
 RUN useradd -r -g wheel build
 RUN sed -i '/NOPASSWD/s/\#//' /etc/sudoers
@@ -10,9 +16,8 @@ RUN chown -R build /build
 WORKDIR /home/build
 RUN chown -R build /home/build
 
-# Install git
-RUN pacman -Sy --noconfirm base-devel pacman-contrib
-RUN pacman -Sy --noconfirm --asdeps git go
+# Install dependencies for yay and this docker image
+RUN pacman -Sy --noconfirm pacman-contrib git go
 
 USER build
 
