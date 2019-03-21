@@ -43,3 +43,6 @@ WORKDIR /usr/bin/
 COPY cleanup-build .
 RUN chmod +x /usr/bin/cleanup-build
 RUN cleanup-build
+
+# Fix PATH
+ENV PATH="/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl:$PATH"
