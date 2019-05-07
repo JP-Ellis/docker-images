@@ -1,6 +1,8 @@
-#!/bin/bash
+#!/bin/zsh
 
 set -ex
+
+cwd="$0:A:h"
 
 docker-build() {
     if [ $# -eq 0 ] ; then
@@ -12,7 +14,7 @@ docker-build() {
     build=$1
     shift
 
-    docker build --squash --compress $@ $build -t jp-ellis/${build}
+    docker build --squash --compress $@ $cwd/$build -t jp-ellis/${build}
 }
 
 # Build local/yay first as it is the dependency to all the other images
