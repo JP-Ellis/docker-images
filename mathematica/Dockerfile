@@ -9,7 +9,7 @@ WORKDIR /build/mathematica
 RUN sed -i 's/chmod +x/# chmod +x/' PKGBUILD
 RUN sed -i 's/# msg2 "Removing documentation"/msg2 "Removing documentation"/' PKGBUILD
 RUN sed -i 's|# rm -rf "\${pkgdir}/opt/Mathematica/Documentation"|rm -rf "\${pkgdir}/opt/Mathematica/Documentation"|' PKGBUILD
-COPY Mathematica_11.3.0_LINUX.sh .
+COPY Mathematica_12.0.0_LINUX.sh .
 RUN makepkg --noconfirm -si && \
     rm -rvf /build/*
 
